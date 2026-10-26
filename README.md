@@ -37,6 +37,7 @@ Nenhuma resposta fica no repositório. No aparelho de quem preenche, o navegador
    - O Google vai pedir autorização. Clique em **Revisar permissões**, escolha sua conta.
    - Vai aparecer "O Google não verificou este app". Isso é normal para scripts próprios. Clique em **Avançado → Acessar (nome do projeto) (não seguro) → Permitir**.
    - Volte para a planilha: ela terá a aba **Inscricoes** (cabeçalho colorido, filtro, cores por status, menores destacados) e a aba **Resumo** (contagens automáticas por status, culto e frequência). Pode rodar de novo quando quiser: não apaga inscrições.
+   - Se o script foi criado direto em script.google.com (fora de uma planilha), essa função **cria a planilha "Inscrições Mídia" no seu Google Drive** e mostra o link no **Registro de execução**.
 5. (Recomendado) Teste antes de publicar: escolha a função **testarGravacao** e clique em **Executar**. Deve aparecer uma linha "Teste da Silva" na aba **Inscricoes**. Apague essa linha.
 6. Clique em **Implantar → Nova implantação**.
 7. Clique na engrenagem ao lado de "Selecione o tipo" e escolha **App da Web**.

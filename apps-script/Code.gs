@@ -6,6 +6,11 @@
  */
 
 var NOME_ABA = 'Inscricoes';
+
+// ID de uma planilha que já existe, se você quiser usar uma específica.
+// O ID é o trecho do link da planilha entre "/d/" e "/edit".
+// Deixe '' para o script criar a planilha sozinho (função configurarPlanilha).
+var PLANILHA_ID = '';
 var FUSO = 'America/Sao_Paulo';
 var STATUS_INICIAL = 'Aguardando conversa';
 var STATUS_OPCOES = ['Aguardando conversa', 'Conversa feita', 'Teste', 'Observação', 'Aprovado', 'Não seguiu'];
@@ -132,11 +137,23 @@ function montarLinha_(d, nascimento) {
   ];
 }
 
-function obterAba_() {
+// Procura a planilha nesta ordem: PLANILHA_ID no código, a planilha que o
+// próprio script criou (guardada nas propriedades do script) e, por último,
+// a planilha onde o script foi criado (Extensões > Apps Script).
+function obterPlanilha_() {
+  var id = PLANILHA_ID || PropertiesService.getScriptProperties().getProperty('PLANILHA_ID');
+  if (id) {
+    return SpreadsheetApp.openById(id);
+  }
   var planilha = SpreadsheetApp.getActiveSpreadsheet();
   if (!planilha) {
-    throw new Error('Script não está vinculado a uma planilha. Crie-o em Extensões > Apps Script dentro da planilha.');
+    throw new Error('Nenhuma planilha configurada. No editor, execute a função configurarPlanilha uma vez.');
   }
+  return planilha;
+}
+
+function obterAba_() {
+  var planilha = obterPlanilha_();
   var aba = planilha.getSheetByName(NOME_ABA) || planilha.insertSheet(NOME_ABA);
   if (aba.getLastRow() === 0) {
     prepararAba_(aba);
@@ -148,12 +165,20 @@ function obterAba_() {
  * Formata a planilha de uma vez: aba "Inscricoes" com cabeçalho, larguras,
  * cores de status e filtro, e uma aba "Resumo" com contagens automáticas.
  * Rode uma vez pelo editor (escolha "configurarPlanilha" e clique em Executar).
+ * Se ainda não existir planilha, ela é criada no seu Google Drive com o nome
+ * "Inscrições Mídia" e o link aparece no Registro de execução.
  * Pode rodar de novo sem perder inscrições: só refaz a formatação.
  */
 function configurarPlanilha() {
-  var planilha = SpreadsheetApp.getActiveSpreadsheet();
-  if (!planilha) {
-    throw new Error('Script não está vinculado a uma planilha. Crie-o em Extensões > Apps Script dentro da planilha.');
+  var planilha;
+  var criada = false;
+  var temId = PLANILHA_ID || PropertiesService.getScriptProperties().getProperty('PLANILHA_ID');
+  if (temId || SpreadsheetApp.getActiveSpreadsheet()) {
+    planilha = obterPlanilha_();
+  } else {
+    planilha = SpreadsheetApp.create('Inscrições Mídia');
+    PropertiesService.getScriptProperties().setProperty('PLANILHA_ID', planilha.getId());
+    criada = true;
   }
   planilha.setSpreadsheetTimeZone(FUSO);
   planilha.setSpreadsheetLocale('pt_BR');
@@ -163,13 +188,17 @@ function configurarPlanilha() {
   prepararResumo_(planilha);
 
   // Remove a aba padrão vazia ("Página1"/"Sheet1"), se existir.
-  ['Página1', 'Sheet1', 'Planilha1'].forEach(function (nome) {
-    var padrao = planilha.getSheetByName(nome);
-    if (padrao && padrao.getLastRow() === 0 && planilha.getSheets().length > 1) {
-      planilha.deleteSheet(padrao);
+  planilha.getSheets().forEach(function (outra) {
+    var nome = outra.getName();
+    if (nome === NOME_ABA || nome === 'Resumo') return;
+    var padrao = criada || ['Página1', 'Sheet1', 'Planilha1'].indexOf(nome) !== -1;
+    if (padrao && outra.getLastRow() === 0) {
+      planilha.deleteSheet(outra);
     }
   });
   planilha.setActiveSheet(aba);
+
+  Logger.log((criada ? 'Planilha criada: ' : 'Planilha formatada: ') + planilha.getUrl());
 }
 
 var COR_CABECALHO = '#24406b';
