@@ -1,4 +1,4 @@
-# Formulário de inscrição — Equipe de Mídia
+# Formulário de inscrição - Equipe de Mídia
 
 Formulário em etapas para quem quer servir na equipe de mídia da Assembleia de Deus Subsede Industrial São Luiz (Contagem/MG). Fica hospedado no GitHub Pages e grava as respostas numa planilha do Google.
 

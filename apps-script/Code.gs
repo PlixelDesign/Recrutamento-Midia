@@ -317,7 +317,7 @@ function prepararResumo_(planilha) {
   ];
 
   var linha = 1;
-  aba.getRange(linha, 1, 1, 2).merge().setValue('Resumo das inscrições — Equipe de Mídia')
+  aba.getRange(linha, 1, 1, 2).merge().setValue('Resumo das inscrições - Equipe de Mídia')
     .setFontSize(14).setFontWeight('bold').setFontColor(COR_CABECALHO);
   linha += 2;
   blocos.forEach(function (bloco) {
