@@ -1,0 +1,319 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Equipe de Mídia — Inscrição</title>
+  <meta name="description" content="Inscrição para a equipe de mídia da Assembleia de Deus Subsede Industrial São Luiz.">
+  <meta name="theme-color" content="#ffffff">
+  <meta name="robots" content="noindex">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <p class="igreja">Assembleia de Deus · Subsede Industrial São Luiz</p>
+  <header class="topo">
+    <div class="progresso" id="progresso">
+      <p class="progresso-texto" id="progresso-texto" aria-hidden="true">Abertura</p>
+      <div class="progresso-trilho" role="progressbar" id="progresso-barra"
+           aria-label="Progresso da inscrição" aria-valuemin="1" aria-valuemax="5" aria-valuenow="1">
+        <div class="progresso-preenchido" id="progresso-preenchido"></div>
+      </div>
+    </div>
+  </header>
+
+  <main class="conteudo">
+    <noscript>
+      <p class="aviso">Este formulário precisa de JavaScript. Ative o JavaScript no navegador ou abra o link em outro navegador.</p>
+    </noscript>
+
+    <form id="form" novalidate autocomplete="on">
+      <!-- Honeypot: invisível para pessoas. Se vier preenchido, o envio é descartado. -->
+      <div class="hp" aria-hidden="true">
+        <label for="website">Não preencha este campo</label>
+        <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
+      </div>
+
+      <!-- ABERTURA -->
+      <section class="step" data-step="0" aria-labelledby="t0">
+        <h1 id="t0" tabindex="-1">Equipe de Mídia — Inscrição</h1>
+        <p class="destaque">Servir na mídia é ministério, não vaga.</p>
+        <p>Este formulário é o primeiro passo. Depois dele, você vai conversar com o líder, fazer um pequeno teste prático e passar por um período de acompanhamento: um encontro de boas-vindas, 3 cultos servindo junto com alguém da equipe e algumas aulas em vídeo no primeiro mês.</p>
+        <p>Enviar o formulário não significa entrar na equipe. Ele serve para a gente conhecer você e deixar claro, desde já, o que esperamos de quem serve.</p>
+        <p class="nota">Leva uns 5 minutos.</p>
+
+        <div class="rascunho" id="aviso-rascunho" hidden>
+          <p>Encontramos uma inscrição começada neste aparelho e recuperamos o que já estava preenchido.</p>
+          <button type="button" class="link-botao" id="apagar-rascunho">Apagar e começar do zero</button>
+        </div>
+
+        <div class="acoes acoes-unica">
+          <button type="button" class="botao botao-primario" data-action="next">Começar</button>
+        </div>
+      </section>
+
+      <!-- BLOCO 1 -->
+      <section class="step" data-step="1" aria-labelledby="t1" hidden>
+        <h2 id="t1" tabindex="-1">Quem é você</h2>
+
+        <div class="field" data-validate="name">
+          <label for="nome">Nome completo</label>
+          <input id="nome" name="nome" type="text" autocomplete="name" autocapitalize="words" maxlength="120" required>
+          <p class="field-error" id="nome-error" hidden></p>
+        </div>
+
+        <div class="field" data-validate="phone">
+          <label for="whatsapp">WhatsApp</label>
+          <p class="hint" id="whatsapp-hint">Com DDD. Ex.: (31) 99999-9999</p>
+          <input id="whatsapp" name="whatsapp" type="tel" inputmode="numeric" autocomplete="tel-national" placeholder="(31) 99999-9999" maxlength="15" required data-mask="phone">
+          <p class="field-error" id="whatsapp-error" hidden></p>
+        </div>
+
+        <div class="field" data-validate="birthdate">
+          <label for="nascimento">Data de nascimento</label>
+          <input id="nascimento" name="nascimento" type="date" min="1920-01-01" required>
+          <p class="hint" id="idade-info" aria-live="polite"></p>
+          <p class="field-error" id="nascimento-error" hidden></p>
+        </div>
+
+        <div class="conditional" id="bloco-responsavel" hidden>
+          <p class="conditional-titulo">Como você é menor de idade, precisamos dos dados de um responsável.</p>
+
+          <div class="field" data-validate="name">
+            <label for="responsavelNome">Nome do responsável</label>
+            <input id="responsavelNome" name="responsavelNome" type="text" autocapitalize="words" maxlength="120" required>
+            <p class="field-error" id="responsavelNome-error" hidden></p>
+          </div>
+
+          <div class="field" data-validate="phone">
+            <label for="responsavelWhatsapp">WhatsApp do responsável</label>
+            <input id="responsavelWhatsapp" name="responsavelWhatsapp" type="tel" inputmode="numeric" placeholder="(31) 99999-9999" maxlength="15" required data-mask="phone">
+            <p class="field-error" id="responsavelWhatsapp-error" hidden></p>
+          </div>
+
+          <div class="field" data-validate="check">
+            <label class="choice">
+              <input type="checkbox" id="responsavelAutoriza" name="responsavelAutoriza" value="Sim" required>
+              <span>Meu responsável sabe e autoriza minha inscrição.</span>
+            </label>
+            <p class="field-error" id="responsavelAutoriza-error" hidden></p>
+          </div>
+        </div>
+
+        <div class="field" data-validate="required">
+          <label for="bairroCidade">Bairro e cidade</label>
+          <p class="hint" id="bairroCidade-hint">Usamos para pensar na escala de quem mora mais longe.</p>
+          <input id="bairroCidade" name="bairroCidade" type="text" autocapitalize="words" maxlength="120" placeholder="Ex.: Industrial São Luiz, Contagem" required>
+          <p class="field-error" id="bairroCidade-error" hidden></p>
+        </div>
+
+        <fieldset class="field" data-validate="radio" data-name="tempoIgreja">
+          <legend>Há quanto tempo você congrega na nossa igreja?</legend>
+          <div class="choices">
+            <label class="choice"><input type="radio" name="tempoIgreja" value="Menos de 6 meses" required><span>Menos de 6 meses</span></label>
+            <label class="choice"><input type="radio" name="tempoIgreja" value="6 meses a 1 ano"><span>6 meses a 1 ano</span></label>
+            <label class="choice"><input type="radio" name="tempoIgreja" value="1 a 3 anos"><span>1 a 3 anos</span></label>
+            <label class="choice"><input type="radio" name="tempoIgreja" value="Mais de 3 anos"><span>Mais de 3 anos</span></label>
+          </div>
+          <p class="field-error" id="tempoIgreja-error" hidden></p>
+        </fieldset>
+
+        <fieldset class="field" data-validate="radio" data-name="batismo">
+          <legend>Você já aceitou Jesus e foi batizado nas águas?</legend>
+          <div class="choices">
+            <label class="choice"><input type="radio" name="batismo" value="Sim, sou batizado" required><span>Sim, sou batizado</span></label>
+            <label class="choice"><input type="radio" name="batismo" value="Aceitei Jesus, mas ainda não fui batizado"><span>Aceitei Jesus, mas ainda não fui batizado</span></label>
+            <label class="choice"><input type="radio" name="batismo" value="Ainda não aceitei Jesus"><span>Ainda não aceitei Jesus</span></label>
+          </div>
+          <p class="field-error" id="batismo-error" hidden></p>
+        </fieldset>
+
+        <fieldset class="field" data-validate="radio" data-name="outroMinisterio">
+          <legend>Você já serve em outro ministério?</legend>
+          <div class="choices choices-linha">
+            <label class="choice"><input type="radio" name="outroMinisterio" value="Sim" required><span>Sim</span></label>
+            <label class="choice"><input type="radio" name="outroMinisterio" value="Não"><span>Não</span></label>
+          </div>
+          <p class="field-error" id="outroMinisterio-error" hidden></p>
+        </fieldset>
+
+        <div class="conditional" id="bloco-ministerio" hidden>
+          <div class="field" data-validate="required">
+            <label for="outroMinisterioQual">Qual e com que frequência?</label>
+            <input id="outroMinisterioQual" name="outroMinisterioQual" type="text" maxlength="200" placeholder="Ex.: Louvor, 2 domingos por mês" required>
+            <p class="field-error" id="outroMinisterioQual-error" hidden></p>
+          </div>
+        </div>
+
+        <div class="acoes">
+          <button type="button" class="botao botao-secundario" data-action="back">Voltar</button>
+          <button type="button" class="botao botao-primario" data-action="next">Continuar</button>
+        </div>
+      </section>
+
+      <!-- BLOCO 2 -->
+      <section class="step" data-step="2" aria-labelledby="t2" hidden>
+        <h2 id="t2" tabindex="-1">Coração</h2>
+        <p class="intro">Não tem resposta certa. Responda com sinceridade, do seu jeito.</p>
+
+        <div class="field" data-validate="minlen" data-min="30">
+          <label for="motivacao">Por que você quer servir na mídia?</label>
+          <textarea id="motivacao" name="motivacao" rows="5" maxlength="2000" required></textarea>
+          <p class="contador" data-for="motivacao" aria-hidden="true"></p>
+          <p class="field-error" id="motivacao-error" hidden></p>
+        </div>
+
+        <div class="field" data-validate="minlen" data-min="20">
+          <label for="situacional">Imagine: você editou um stories, achou que ficou bom, e o líder pede para refazer antes de postar. O que você faz?</label>
+          <textarea id="situacional" name="situacional" rows="5" maxlength="2000" required></textarea>
+          <p class="contador" data-for="situacional" aria-hidden="true"></p>
+          <p class="field-error" id="situacional-error" hidden></p>
+        </div>
+
+        <div class="acoes">
+          <button type="button" class="botao botao-secundario" data-action="back">Voltar</button>
+          <button type="button" class="botao botao-primario" data-action="next">Continuar</button>
+        </div>
+      </section>
+
+      <!-- BLOCO 3 -->
+      <section class="step" data-step="3" aria-labelledby="t3" hidden>
+        <h2 id="t3" tabindex="-1">Competência</h2>
+        <p class="intro">Ninguém precisa chegar sabendo tudo. Queremos saber por onde você começaria.</p>
+
+        <fieldset class="field" data-validate="min1" data-name="areas">
+          <legend>Em quais áreas você tem interesse?</legend>
+          <p class="hint">Marque quantas quiser.</p>
+
+          <p class="grupo-titulo" id="grupo-comunicacao">Comunicação</p>
+          <div class="choices" role="group" aria-labelledby="grupo-comunicacao">
+            <label class="choice"><input type="checkbox" name="areas" value="Captação de stories e Reels pelo celular"><span>Captação de stories e Reels pelo celular</span></label>
+            <label class="choice"><input type="checkbox" name="areas" value="Edição de stories e Reels"><span>Edição de stories e Reels</span></label>
+            <label class="choice"><input type="checkbox" name="areas" value="Fotografia"><span>Fotografia</span></label>
+            <label class="choice"><input type="checkbox" name="areas" value="Design / artes"><span>Design / artes</span></label>
+            <label class="choice"><input type="checkbox" name="areas" value="Redação"><span>Redação <small>(anotar a pregação, escrever legendas)</small></span></label>
+            <label class="choice"><input type="checkbox" name="areas" value="Atendimento"><span>Atendimento <small>(responder DMs e comentários)</small></span></label>
+          </div>
+
+          <p class="grupo-titulo" id="grupo-multimidia">Multimídia <small>(operação do culto)</small></p>
+          <div class="choices" role="group" aria-labelledby="grupo-multimidia">
+            <label class="choice"><input type="checkbox" name="areas" value="Transmissão ao vivo"><span>Transmissão ao vivo</span></label>
+            <label class="choice"><input type="checkbox" name="areas" value="Som"><span>Som</span></label>
+            <label class="choice"><input type="checkbox" name="areas" value="Projeção / letras"><span>Projeção / letras</span></label>
+            <label class="choice"><input type="checkbox" name="areas" value="Iluminação"><span>Iluminação</span></label>
+          </div>
+          <p class="field-error" id="areas-error" hidden></p>
+        </fieldset>
+
+        <fieldset class="field" data-name="apps">
+          <legend>Quais programas ou apps você já usa? <span class="opcional">(opcional)</span></legend>
+          <div class="choices choices-grade">
+            <label class="choice"><input type="checkbox" name="apps" value="CapCut"><span>CapCut</span></label>
+            <label class="choice"><input type="checkbox" name="apps" value="Canva"><span>Canva</span></label>
+            <label class="choice"><input type="checkbox" name="apps" value="Lightroom"><span>Lightroom</span></label>
+            <label class="choice"><input type="checkbox" name="apps" value="Photoshop"><span>Photoshop</span></label>
+            <label class="choice"><input type="checkbox" name="apps" value="Premiere / DaVinci"><span>Premiere / DaVinci</span></label>
+            <label class="choice"><input type="checkbox" name="apps" value="OBS"><span>OBS</span></label>
+            <label class="choice"><input type="checkbox" name="apps" value="Holyrics / ProPresenter"><span>Holyrics / ProPresenter</span></label>
+            <label class="choice"><input type="checkbox" name="apps" value="Outro" id="apps-outro-check"><span>Outro</span></label>
+          </div>
+        </fieldset>
+
+        <div class="conditional" id="bloco-apps-outro" hidden>
+          <div class="field" data-validate="required">
+            <label for="appsOutro">Qual outro programa ou app?</label>
+            <input id="appsOutro" name="appsOutro" type="text" maxlength="200" required>
+            <p class="field-error" id="appsOutro-error" hidden></p>
+          </div>
+        </div>
+
+        <div class="field" data-validate="required">
+          <label for="aprendizado">O que você fez nos últimos 6 meses para aprender ou melhorar nessa área?</label>
+          <p class="hint" id="aprendizado-hint">Curso, vídeo no YouTube, prática por conta própria, equipamento que comprou… Vale tudo. Se ainda não fez nada, diga isso também.</p>
+          <textarea id="aprendizado" name="aprendizado" rows="4" maxlength="2000" required></textarea>
+          <p class="field-error" id="aprendizado-error" hidden></p>
+        </div>
+
+        <div class="field" data-validate="url">
+          <label for="link">Link de algo que você já fez <span class="opcional">(opcional)</span></label>
+          <p class="hint" id="link-hint">Instagram, Drive, YouTube, portfólio.</p>
+          <input id="link" name="link" type="text" inputmode="url" autocomplete="url" autocapitalize="none" spellcheck="false" maxlength="500" placeholder="instagram.com/seuperfil">
+          <p class="field-error" id="link-error" hidden></p>
+        </div>
+
+        <fieldset class="field" data-name="equipamento">
+          <legend>Que equipamento você tem disponível? <span class="opcional">(opcional)</span></legend>
+          <div class="choices">
+            <label class="choice"><input type="checkbox" name="equipamento" value="Celular que grava bem"><span>Celular que grava bem</span></label>
+            <label class="choice"><input type="checkbox" name="equipamento" value="Notebook"><span>Notebook</span></label>
+            <label class="choice"><input type="checkbox" name="equipamento" value="Câmera"><span>Câmera</span></label>
+            <label class="choice"><input type="checkbox" name="equipamento" value="Gimbal / estabilizador"><span>Gimbal / estabilizador</span></label>
+            <label class="choice"><input type="checkbox" name="equipamento" value="Microfone de lapela"><span>Microfone de lapela</span></label>
+            <label class="choice"><input type="checkbox" name="equipamento" value="Nenhum por enquanto" id="equip-nenhum"><span>Nenhum por enquanto</span></label>
+          </div>
+        </fieldset>
+
+        <div class="acoes">
+          <button type="button" class="botao botao-secundario" data-action="back">Voltar</button>
+          <button type="button" class="botao botao-primario" data-action="next">Continuar</button>
+        </div>
+      </section>
+
+      <!-- BLOCO 4 -->
+      <section class="step" data-step="4" aria-labelledby="t4" hidden>
+        <h2 id="t4" tabindex="-1">Compromisso</h2>
+
+        <fieldset class="field" data-validate="min1" data-name="cultos">
+          <legend>Em quais cultos você pode servir?</legend>
+          <p class="hint">Marque todos em que você consegue estar.</p>
+          <div class="choices" id="lista-cultos"></div>
+          <p class="field-error" id="cultos-error" hidden></p>
+        </fieldset>
+
+        <fieldset class="field" data-validate="radio" data-name="frequencia">
+          <legend>Com que frequência você consegue servir?</legend>
+          <p class="hint">A escala é fixa: por exemplo, todo 1º domingo do mês.</p>
+          <div class="choices">
+            <label class="choice"><input type="radio" name="frequencia" value="1 vez por mês" required><span>1 vez por mês</span></label>
+            <label class="choice"><input type="radio" name="frequencia" value="2 vezes por mês"><span>2 vezes por mês</span></label>
+          </div>
+          <p class="field-error" id="frequencia-error" hidden></p>
+        </fieldset>
+
+        <fieldset class="field" data-validate="all" data-name="compromissos">
+          <legend>Compromissos</legend>
+          <p class="hint">Leia com atenção. Para enviar, marque todos.</p>
+          <div class="choices">
+            <label class="choice"><input type="checkbox" name="compromissos" value="Chegar 1h antes" required><span>Chegar 1 hora antes do culto em que eu estiver escalado.</span></label>
+            <label class="choice"><input type="checkbox" name="compromissos" value="Avisar e achar substituto" required><span>Se não puder ir, avisar com antecedência e encontrar alguém para me substituir.</span></label>
+            <label class="choice"><input type="checkbox" name="compromissos" value="Roupa preta/discreta" required><span>Usar roupa preta ou discreta quando estiver servindo.</span></label>
+            <label class="choice"><input type="checkbox" name="compromissos" value="Período inicial" required><span>Participar do período inicial: encontro de boas-vindas, 3 cultos acompanhado e as aulas do primeiro mês.</span></label>
+            <label class="choice"><input type="checkbox" name="compromissos" value="Uso dos dados" required><span>Autorizo o uso destes dados apenas pela liderança de mídia da igreja, para este processo.</span></label>
+          </div>
+          <p class="field-error" id="compromissos-error" hidden></p>
+        </fieldset>
+
+        <div class="erro-envio" id="erro-envio" role="alert" hidden></div>
+
+        <div class="acoes">
+          <button type="button" class="botao botao-secundario" data-action="back">Voltar</button>
+          <button type="submit" class="botao botao-primario" id="botao-enviar">Enviar inscrição</button>
+        </div>
+      </section>
+    </form>
+
+    <!-- CONFIRMAÇÃO -->
+    <section class="confirmacao" id="confirmacao" aria-labelledby="t-ok" hidden>
+      <h1 id="t-ok" tabindex="-1">Inscrição recebida.</h1>
+      <p id="texto-ok">O próximo passo é uma conversa com o líder de mídia. Ele vai te chamar no WhatsApp nos próximos dias.</p>
+    </section>
+  </main>
+
+  <footer class="rodape">
+    <p>Assembleia de Deus Subsede Industrial São Luiz · Contagem/MG</p>
+    <p><a href="https://www.instagram.com/adbh_industrialsaoluiz/" rel="noopener">@adbh_industrialsaoluiz</a></p>
+  </footer>
+
+  <script src="config.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

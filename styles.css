@@ -1,0 +1,417 @@
+/* Cores da identidade visual. Para usar as cores da igreja, troque
+   --acento (cor principal dos botões e destaques) e --acento-suave
+   (fundo claro das opções marcadas). Mantenha --acento escuro o bastante
+   para texto branco por cima ficar legível. */
+:root {
+  --acento: #24406b;
+  --acento-suave: #eef2f8;
+  --texto: #16181d;
+  --texto-suave: #545a66;
+  --fundo: #ffffff;
+  --fundo-alt: #f6f7f9;
+  --borda: #c9ced8;
+  --borda-forte: #8a92a1;
+  --erro: #b42318;
+  --erro-suave: #fdf1f0;
+  --foco: #24406b;
+  --raio: 10px;
+  color-scheme: light;
+}
+
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--fundo);
+  color: var(--texto);
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-size: 17px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+[hidden] { display: none !important; }
+
+/* Topo e progresso */
+
+.topo {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: var(--fundo);
+  border-bottom: 1px solid #e6e8ec;
+  padding: 10px 16px 12px;
+}
+
+.igreja {
+  max-width: 560px;
+  margin: 0 auto;
+  padding: 14px 16px 0;
+  font-size: 13px;
+  letter-spacing: 0.02em;
+  color: var(--texto-suave);
+}
+
+.progresso { max-width: 560px; margin: 0 auto; }
+
+.progresso-texto {
+  margin: 0 0 6px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.progresso-trilho {
+  height: 4px;
+  background: #e3e6eb;
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.progresso-preenchido {
+  height: 100%;
+  width: 20%;
+  background: var(--acento);
+  transition: width 0.25s ease;
+}
+
+/* Conteúdo */
+
+.conteudo {
+  max-width: 560px;
+  margin: 0 auto;
+  padding: 28px 16px 40px;
+}
+
+h1, h2 {
+  margin: 0 0 16px;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+}
+
+h1 { font-size: 28px; }
+h2 { font-size: 24px; }
+
+h1:focus, h2:focus { outline: none; }
+
+p { margin: 0 0 14px; }
+
+.destaque { font-size: 19px; font-weight: 600; }
+
+.nota, .intro { color: var(--texto-suave); }
+
+.intro { margin-bottom: 24px; }
+
+.aviso {
+  padding: 14px 16px;
+  border-radius: var(--raio);
+  background: var(--erro-suave);
+  color: var(--erro);
+}
+
+/* Campos */
+
+.field {
+  margin: 0 0 28px;
+  padding: 0;
+  border: 0;
+  min-width: 0;
+}
+
+label,
+legend {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 6px;
+  padding: 0;
+}
+
+legend { float: left; width: 100%; }
+legend + * { clear: both; }
+
+.hint {
+  margin: -2px 0 8px;
+  font-size: 15px;
+  color: var(--texto-suave);
+}
+
+.hint:empty { display: none; }
+
+#idade-info { margin: 8px 0 0; }
+
+.opcional { font-weight: 400; color: var(--texto-suave); }
+
+input[type="text"],
+input[type="tel"],
+input[type="date"],
+textarea {
+  display: block;
+  width: 100%;
+  min-height: 52px;
+  padding: 12px 14px;
+  font: inherit;
+  font-size: 17px; /* mínimo de 16px evita o zoom automático no iOS */
+  color: var(--texto);
+  background: var(--fundo);
+  border: 1px solid var(--borda-forte);
+  border-radius: var(--raio);
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+input[type="date"] {
+  line-height: 1.5;
+  min-width: 0;
+  -webkit-min-logical-width: 0;
+}
+
+input[type="date"]::-webkit-date-and-time-value { text-align: left; }
+
+textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+::placeholder { color: #8b919c; opacity: 1; }
+
+input:focus-visible,
+textarea:focus-visible {
+  outline: 3px solid var(--foco);
+  outline-offset: 1px;
+  border-color: var(--foco);
+}
+
+[aria-invalid="true"] { border-color: var(--erro) !important; }
+
+.contador {
+  margin: 6px 0 0;
+  font-size: 14px;
+  color: var(--texto-suave);
+  text-align: right;
+}
+
+.contador.ok { color: #1f6b3a; }
+
+.field-error {
+  margin: 8px 0 0;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--erro);
+}
+
+.field-error::before { content: "! "; }
+
+/* Opções (radio e checkbox) */
+
+.choices {
+  display: grid;
+  gap: 8px;
+}
+
+.choices-linha { grid-template-columns: 1fr 1fr; }
+
+@media (min-width: 420px) {
+  .choices-grade { grid-template-columns: 1fr 1fr; }
+}
+
+.choice {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin: 0;
+  min-height: 52px;
+  padding: 14px;
+  font-weight: 400;
+  border: 1px solid var(--borda);
+  border-radius: var(--raio);
+  background: var(--fundo);
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.choice:hover { border-color: var(--borda-forte); }
+
+.choice:has(input:checked) {
+  border-color: var(--acento);
+  background: var(--acento-suave);
+}
+
+.choice:has(input:focus-visible) {
+  outline: 3px solid var(--foco);
+  outline-offset: 1px;
+}
+
+.choice input {
+  flex: none;
+  width: 22px;
+  height: 22px;
+  margin: 1px 0 0;
+  accent-color: var(--acento);
+  cursor: pointer;
+}
+
+.choice input:focus-visible { outline: none; }
+
+.choice small { color: var(--texto-suave); font-size: 15px; }
+
+.field[data-invalid="true"] .choice { border-color: var(--erro); }
+.field[data-invalid="true"] .choice:has(input:checked) { border-color: var(--acento); }
+
+.grupo-titulo {
+  margin: 18px 0 8px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--texto-suave);
+}
+
+.grupo-titulo small {
+  font-weight: 400;
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+.choices + .grupo-titulo { margin-top: 22px; }
+
+/* Blocos condicionais */
+
+.conditional {
+  margin: -12px 0 28px;
+  padding: 16px 16px 0 14px;
+  border-left: 3px solid var(--acento);
+  background: var(--fundo-alt);
+  border-radius: 0 var(--raio) var(--raio) 0;
+}
+
+.conditional .field { margin-bottom: 20px; }
+.conditional .field:last-child { padding-bottom: 16px; margin-bottom: 0; }
+
+.conditional-titulo { font-size: 15px; color: var(--texto-suave); }
+
+/* Botões */
+
+.acoes {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 10px;
+  margin-top: 36px;
+}
+
+.acoes-unica { grid-template-columns: 1fr; }
+
+.botao {
+  min-height: 54px;
+  padding: 0 20px;
+  font: inherit;
+  font-size: 17px;
+  font-weight: 600;
+  border-radius: var(--raio);
+  border: 1px solid transparent;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+.botao:focus-visible {
+  outline: 3px solid var(--foco);
+  outline-offset: 2px;
+}
+
+.botao-primario {
+  background: var(--acento);
+  color: #fff;
+}
+
+.botao-primario:hover { filter: brightness(1.12); }
+
+.botao-primario:disabled {
+  cursor: progress;
+  opacity: 0.7;
+  filter: none;
+}
+
+.botao-secundario {
+  background: var(--fundo);
+  color: var(--texto);
+  border-color: var(--borda-forte);
+}
+
+.botao-secundario:hover { background: var(--fundo-alt); }
+
+.link-botao {
+  padding: 8px 0;
+  font: inherit;
+  font-size: 15px;
+  color: var(--acento);
+  text-decoration: underline;
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
+
+.link-botao:focus-visible { outline: 3px solid var(--foco); outline-offset: 2px; }
+
+.rascunho {
+  margin-top: 24px;
+  padding: 14px 16px;
+  font-size: 15px;
+  border: 1px solid var(--borda);
+  border-radius: var(--raio);
+  background: var(--fundo-alt);
+}
+
+.rascunho p { margin-bottom: 4px; }
+
+.erro-envio {
+  margin-top: 8px;
+  padding: 14px 16px;
+  font-size: 15px;
+  color: var(--erro);
+  background: var(--erro-suave);
+  border: 1px solid #f1c4c0;
+  border-radius: var(--raio);
+}
+
+.erro-envio p { margin: 0 0 6px; }
+.erro-envio p:last-child { margin: 0; }
+
+/* Confirmação */
+
+.confirmacao { padding-top: 12px; }
+.confirmacao p { font-size: 18px; }
+
+/* Rodapé */
+
+.rodape {
+  max-width: 560px;
+  margin: 0 auto;
+  padding: 24px 16px 40px;
+  font-size: 14px;
+  color: var(--texto-suave);
+  border-top: 1px solid #e6e8ec;
+}
+
+.rodape p { margin: 0 0 4px; }
+
+.rodape a { color: var(--texto-suave); }
+
+.rodape a:focus-visible { outline: 3px solid var(--foco); outline-offset: 2px; }
+
+/* Honeypot fora da tela (não usar display:none, alguns robôs ignoram) */
+
+.hp {
+  position: absolute;
+  left: -10000px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .progresso-preenchido { transition: none; }
+}
