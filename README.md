@@ -33,18 +33,19 @@ Nenhuma resposta fica no repositório. No aparelho de quem preenche, o navegador
 1. No editor, apague todo o conteúdo do arquivo `Código.gs` que já vem aberto.
 2. Abra o arquivo `apps-script/Code.gs` deste repositório, copie **tudo** e cole no editor.
 3. Clique no ícone de disquete (**Salvar projeto**).
-4. (Recomendado) Teste antes de publicar: no topo do editor, escolha a função **testarGravacao** na lista e clique em **Executar**.
+4. **Formatar a planilha:** no topo do editor, escolha a função **configurarPlanilha** e clique em **Executar**.
    - O Google vai pedir autorização. Clique em **Revisar permissões**, escolha sua conta.
    - Vai aparecer "O Google não verificou este app". Isso é normal para scripts próprios. Clique em **Avançado → Acessar (nome do projeto) (não seguro) → Permitir**.
-   - Volte para a planilha: deve existir uma aba **Inscricoes** com o cabeçalho e uma linha "Teste da Silva". Apague essa linha.
-5. Clique em **Implantar → Nova implantação**.
-6. Clique na engrenagem ao lado de "Selecione o tipo" e escolha **App da Web**.
-7. Preencha:
+   - Volte para a planilha: ela terá a aba **Inscricoes** (cabeçalho colorido, filtro, cores por status, menores destacados) e a aba **Resumo** (contagens automáticas por status, culto e frequência). Pode rodar de novo quando quiser: não apaga inscrições.
+5. (Recomendado) Teste antes de publicar: escolha a função **testarGravacao** e clique em **Executar**. Deve aparecer uma linha "Teste da Silva" na aba **Inscricoes**. Apague essa linha.
+6. Clique em **Implantar → Nova implantação**.
+7. Clique na engrenagem ao lado de "Selecione o tipo" e escolha **App da Web**.
+8. Preencha:
    - **Descrição:** `Formulário mídia v1`
    - **Executar como:** **Eu** (seu e-mail)
    - **Quem pode acessar:** **Qualquer pessoa**
      (não escolha "Qualquer pessoa com Conta do Google": quem não estiver logado não conseguiria enviar)
-8. Clique em **Implantar**. Autorize de novo se pedir.
+9. Clique em **Implantar**. Autorize de novo se pedir.
 
 ### 3. Copiar a URL e colar no `config.js`
 
@@ -101,7 +102,7 @@ Salvar o código no editor **não** muda o que está no ar. Você precisa public
 
 Cada inscrição vira uma linha na aba **Inscricoes**, com as colunas:
 
-Data/hora · Nome · WhatsApp · Nascimento · Idade · Menor de idade · Responsável · WhatsApp responsável · Bairro/cidade · Tempo de igreja · Batismo · Serve em outro ministério · Qual/frequência · Motivação · Resposta situacional · Áreas · Apps · Aprendizado recente · Link · Equipamento · Cultos · Frequência · Compromissos aceitos · Status
+Data/hora · Nome · WhatsApp · Nascimento · Idade · Menor de idade · Responsável · WhatsApp responsável · Bairro/cidade · Tempo de igreja · Batismo · Serve em outro ministério/conjunto · Qual/frequência · Motivação · Resposta situacional · Áreas · Apps · Aprendizado recente · Link · Equipamento · Cultos · Frequência · Compromissos aceitos · Status
 
 - Listas (áreas, apps, cultos etc.) ficam separadas por `; `.
 - **Status** começa como `Aguardando conversa` e tem uma lista suspensa com: Conversa feita / Teste / Observação / Aprovado / Não seguiu.

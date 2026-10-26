@@ -8,9 +8,11 @@ const SCRIPT_URL = "COLE_AQUI_A_URL_DO_APPS_SCRIPT";
 // Cultos em que a equipe de mídia é escalada. Aparecem na pergunta 15,
 // na ordem desta lista.
 const CULTOS = [
-  "Domingo manhã (EBD)",
-  "Domingo noite",
-  "Quarta noite"
+  "Domingo de manhã (EBD)",
+  "Domingo à noite",
+  "Terça",
+  "Quinta",
+  "Outros dias"
 ];
 
 // Nome do líder de mídia, mostrado na tela de confirmação.
