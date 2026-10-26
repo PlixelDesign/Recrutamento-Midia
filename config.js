@@ -3,7 +3,7 @@
 
 // URL do App da Web do Google Apps Script (veja o README, passo 3).
 // Termina com /exec.
-const SCRIPT_URL = "COLE_AQUI_A_URL_DO_APPS_SCRIPT";
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxXLYNxy6-cTFv_qjTydan7MRbw02YbptiYegbCcDQe2tFxlWPF4GVAhsSa3UkrFkc/exec";
 
 // Cultos em que a equipe de mídia é escalada. Aparecem na pergunta 15,
 // na ordem desta lista.
